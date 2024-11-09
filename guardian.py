@@ -11,23 +11,24 @@ def get_guardian_articles():
 
     lst = []
 
-    links = (
+    cnt = len(
         web.find(id="container-climate-crisis")
         .find_all(tag="a")
         .filter("self::*[not(contains(@data-link-name, 'media'))]")
     )
 
-    for link in links:
-        web.wait(2)
-        link.click()
+    for i in range(cnt):
+        web.find(id="container-climate-crisis").find_all(tag="a").filter(
+            "self::*[not(contains(@data-link-name, 'media'))]"
+        )[i].click()
         title = web.find(tag="h1").text
         subtitle = web.find("//*[@data-gu-name='standfirst']").text
         author = web.find(tag="address").text
         date = web.find(class_name="dcr-1pexjb9").text.split("\n")[0]
 
-        body = "\n".join(web.find(id="maincontent").down[0].find_all(tag="p").text)
-        if body.find("\n") == 1:
-            body = body[0] + body[2:]
+        paragraphs = web.find(id="maincontent").down[0].find_all(tag="p").text
+        paragraphs = [p.replace("\n", "") for p in paragraphs if p]
+        body = "\n".join(paragraphs)
 
         lst.append(
             {
@@ -41,7 +42,11 @@ def get_guardian_articles():
 
         print("\r", title, end="")
 
-        web.back()
+        web.get(URL)
 
-    print("\n", len(lst), "articles are collected.")
+    print("\n", len(lst), "articles are collected.\n")
     return lst
+
+
+if __name__ == "__main__":
+    print(get_guardian_articles())

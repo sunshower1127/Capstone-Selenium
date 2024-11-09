@@ -10,4 +10,4 @@ cloudflared tunnel --url http://127.0.0.1:5000
 ```
 
 /articles -> 기사 가져오기 (json으로 리턴)
-/refresh -> 기사 새로고침 (하나당 2초정도 소요)
+/refresh -> 기사 새로고침 (3~6초 정도 소요)
