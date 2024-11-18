@@ -19,14 +19,14 @@ def get_guardian_articles():
     cnt = len(
         web.find(id="container-climate-crisis")
         .find_all(tag="a")
-        .filter("self::*[not(contains(@data-link-name, 'media'))]")
+        .filter("self::*[contains(@data-link-name, 'news')]")
     )
 
     existing_articles = get_articles()
 
     for i in range(cnt):
         web.find(id="container-climate-crisis").find_all(tag="a").filter(
-            "self::*[not(contains(@data-link-name, 'media'))]"
+            "self::*[contains(@data-link-name, 'news')]"
         )[i].click()
         en_title = web.find(tag="h1").text
 
