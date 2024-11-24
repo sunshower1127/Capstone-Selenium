@@ -2,9 +2,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal
 
-from ..parser.xpath_parser import AxisStr, ExprStr, generate_xpath
+from sw_selenium.parsing import generate_xpath
 
 if TYPE_CHECKING:
+    from sw_selenium.parsing.xpath_parser import AxisStr, ExprStr
+
     from .element import SwElement
 
 

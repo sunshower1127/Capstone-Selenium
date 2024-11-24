@@ -1,24 +1,12 @@
-"""driver
-
-keyboard -> 추가 설치 필요
-selenium
-
-"""
-
 from __future__ import annotations
 
-import atexit
-import ctypes
 import os
-import platform
-import subprocess
 import threading
 import time
 from datetime import datetime
 from typing import TYPE_CHECKING, Callable, Literal
 
 import urllib3
-from lazy_import import lazy_module
 from selenium.common.exceptions import (
     NoSuchElementException,
     NoSuchWindowException,
@@ -27,20 +15,20 @@ from selenium.common.exceptions import (
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.by import By
 
-from sw_selenium.parser.xpath_parser import generate_xpath
+from sw_selenium.parsing import convert_date_string, generate_xpath
+from sw_selenium.utils import LazyImport
 
-from ..parser.dateutil_parser import convert_date_string
 from .context_finder import ContextFinder
 from .context_manager import NoException, RetryConfig
 from .element import SwElement
 from .elements import SwElements
 
 if TYPE_CHECKING:
-    import keyboard
+    import keyboard  # type: ignore[import]
 
-    from sw_selenium.parser.xpath_parser import ExprStr
+    from sw_selenium.parsing.xpath_parser import ExprStr
 else:
-    keyboard = lazy_module("keyboard")
+    keyboard = LazyImport("keyboard")
 
 
 # 이게 대체 뭔지 모르겠음
@@ -615,7 +603,7 @@ class SwChrome(Chrome):
     #         focused_element.click()  # 포커스된 요소 클릭
     #         ```
     #     """
-    #     return self._retry(lambda: SwElement(self.switch_to.active_element))
+    #     return self.retry(lambda: SwElement(self.switch_to.active_element))
 
     def retry(self, func: Callable):
         """func을 실행하고, 예외가 발생하면 timeout 시간 동안 freq 간격으로 재시도합니다.

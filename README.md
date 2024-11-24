@@ -4,12 +4,43 @@
 Selenium으로 The Guardian의 Cliamte Crisis 탭의 최신 기사들을 크롤링해서,
 Flask 서버에서 JSON 형태로 제공해줌.
 
+## 설치
+
+```shell
+# 모든 라이브러리 설치
+pip install -r requirements.txt
+
+# 만약 pipenv로 가상환경 쓰고 있으면
+pipenv install
+```
+
+번역 기능이 있어서 DeepL API 키를 받아와야함.
+https://www.deepl.com/ko/pro-api
+
+`.env` 파일 만들어서 `DEEL_KEY=` 추가하면 됨.
+
+## 실행
+
 ```shell
 python server.py
+```
+
+`http://127.0.0.1:5000` 브라우저로 접속해서
+`/update` , `/article`, `/article/몇번째`
+기능 써보면 됨.
+
+## 서버 만들어서 원격 네트워크로 접속하는법
+
+cloudflared 설치가 필요함.
+
+https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/
+들어가서 플랫폼에 맞게 설치 후
+
+```shell
 cloudflared tunnel --url http://127.0.0.1:5000
 ```
 
-해서 내가 서버 주소를 줄거임.
+하면 랜덤 도메인 주소 뽑아줌.
 
 ---
 
@@ -24,7 +55,7 @@ cloudflared tunnel --url http://127.0.0.1:5000
 
 ---
 
-## API 사용 예시(더 자세한 예시는 Fetch-Test 참고)
+## API 사용 예시(더 자세한 예시는 프로젝트내 Fetch-Test 디렉토리 참고)
 
 ```javascript
 const URL = "https://내가건네준주소";

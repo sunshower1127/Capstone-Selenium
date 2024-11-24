@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict
+from pathlib import Path
 
 from data_types import Article
 from translator import translate_one
+
+data_path = Path("articles.json")
 
 
 def article_to_dict(article: Article):
@@ -16,14 +19,18 @@ def dict_to_article(data: dict):
 
 
 def read_articles():
-    with open("articles.json") as f:
-        data = json.load(f)
+    data_path.touch()
+    with data_path.open() as f:
+        try:
+            data = json.load(f)
+        except json.JSONDecodeError:
+            data = []
     return [dict_to_article(d) for d in data]
 
 
 def write_articles(articles: list[Article]):
     data = [article_to_dict(article) for article in articles]
-    with open("articles.json", "w") as f:
+    with data_path.open("w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 

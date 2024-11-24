@@ -1,8 +1,3 @@
-"""xpath_parser
-
-pyparsing
-"""
-
 from __future__ import annotations
 
 from typing import Literal
@@ -34,8 +29,7 @@ AxisStr = Literal[
     "preceding-sibling",
     "self",
 ]
-"""
-AxisStr type description
+"""AxisStr type description
 
 Represents the direction in which to search for elements relative to the current node.
 
@@ -44,8 +38,7 @@ https://www.w3schools.com/xml/xpath_axes.asp
 """
 
 ExprStr = str
-"""
-ExprStr type description
+"""ExprStr type description
 
 Represents a string expression that supports logical operators for element selection.
 
@@ -143,7 +136,7 @@ def _convert_to_logical_expression(element: str | list, prop_format: str) -> str
     return prop_format.format(element)
 
 
-def generate_xpath(**kwargs):
+def generate_xpath(**kwargs) -> str:
     """Generate an XPath expression from the given keyword arguments."""
     data = kwargs.copy()
     if "kwargs" in data:

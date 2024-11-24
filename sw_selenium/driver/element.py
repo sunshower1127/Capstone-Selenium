@@ -1,5 +1,3 @@
-"""element"""
-
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal
@@ -11,10 +9,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
 
-from sw_selenium.driver.elements import SwElements
-from sw_selenium.parser.xpath_parser import AxisStr, ExprStr, generate_xpath
+from sw_selenium.parsing import generate_xpath
+
+from .elements import SwElements
 
 if TYPE_CHECKING:
+    from sw_selenium.parsing.xpath_parser import AxisStr, ExprStr
+
     from .chrome import SwChrome
 
 
