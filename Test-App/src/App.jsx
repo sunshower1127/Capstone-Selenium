@@ -1,7 +1,7 @@
 import "./App.css";
-import AllArticles from "./AllArticles";
-import SingleArticle from "./SingleArticle";
-import UpdateArticle from "./UpdateArticle";
+import AllArticles from "./components/AllArticles";
+import SingleArticle from "./components/SingleArticle";
+import UpdateArticle from "./components/UpdateArticle";
 
 function App() {
   return (
