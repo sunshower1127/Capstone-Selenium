@@ -4,13 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pytz = "*"
+babel = "*"
+deepl = "*"
+python-dotenv = "*"
 selenium = "*"
-pyparsing = "*"
 flask = "*"
 flask-cors = "*"
-pytz = "*"
-python-dotenv = "*"
 
 [dev-packages]
 
 [requires]
+python_version = "3.13"
+python_full_version = "3.13.0"

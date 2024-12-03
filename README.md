@@ -25,7 +25,7 @@ https://www.deepl.com/ko/pro-api
 python server.py
 ```
 
-`http://127.0.0.1:5000` 브라우저로 접속해서
+`http://localhost:8080` 브라우저로 접속해서
 `/update` , `/article`, `/article/몇번째`
 기능 써보면 됨.
 
@@ -37,7 +37,7 @@ https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do
 들어가서 플랫폼에 맞게 설치 후
 
 ```shell
-cloudflared tunnel --url http://127.0.0.1:5000
+cloudflared tunnel --url http://localhost:8080
 ```
 
 하면 랜덤 도메인 주소 뽑아줌.
@@ -58,7 +58,7 @@ cloudflared tunnel --url http://127.0.0.1:5000
 ## API 사용 예시(더 자세한 예시는 프로젝트내 Fetch-Test 디렉토리 참고)
 
 ```javascript
-const URL = "https://내가건네준주소";
+const URL = "http://localhost:8080";
 
 // 모든 기사 헤더를 가져오는 함수
 async function getAllArticles() {
